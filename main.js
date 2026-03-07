@@ -40,3 +40,6 @@ form.addEventListener('submit', function (e) {
       statusText.textContent = 'Xatolik yuz berdi!'
     })
 })
+
+
+// telegram
