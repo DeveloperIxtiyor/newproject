@@ -1,6 +1,6 @@
 'use strict'
 
-const BOT_TOKEN = '8522340229:AAH2tQuPfXzeMJWjrEipv2v9bMnoCwFQJ4g'
+const BOT_TOKEN = '8765203206:AAGkiR2x8tYa0fT6pi7VCdIcrW9LYw1xlok'
 const CHAT_ID = '6023504003'
 
 const form = document.querySelector('#contactForm')
