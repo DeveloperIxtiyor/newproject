@@ -30,8 +30,8 @@ if (form && statusText) {
 📞    telefon:${call}
     `;
 
-    // Telegram API ga so'rov yuborish
-    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+    // To'g'rilangan Telegram API manzili
+    fetch(`https://telegram.org{BOT_TOKEN}/sendMessage`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,11 +42,15 @@ if (form && statusText) {
       }),
     })
       .then((res: Response) => {
-        statusText.textContent = 'Xabar muvaffaqiyatli yuborildi!';
-        form.reset();
+        if (statusText && form) {
+          statusText.textContent = 'Xabar muvaffaqiyatli yuborildi!';
+          form.reset();
+        }
       })
       .catch((err: Error) => {
-        statusText.textContent = 'Xatolik yuz berdi!';
+        if (statusText) {
+          statusText.textContent = 'Xatolik yuz berdi!';
+        }
         console.error(err);
       });
   });
