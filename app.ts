@@ -3,11 +3,14 @@
 const BOT_TOKEN: string = '8765203206:AAGkiR2x8tYa0fT6pi7VCdIcrW9LYw1xlok';
 const CHAT_ID: string = '6023504003';
 
-const form = document.querySelector('#contactForm') as HTMLFormElement | null;
-const statusText = document.querySelector('#status') as HTMLElement | null;
+const form = document.querySelector<HTMLFormElement>('#contactForm');
+const statusText = document.querySelector<HTMLElement>('#status');
 
 if (form && statusText) {
-  form.addEventListener('submit', function (e: SubmitEvent): void {
+  const formElement = form;
+  const statusElement = statusText;
+
+  formElement.addEventListener('submit', function (e: Event): void {
     e.preventDefault();
 
     const emailInput = document.getElementById('email') as HTMLInputElement | null;
@@ -28,8 +31,7 @@ if (form && statusText) {
 📞    telefon: ${call}
     `;
 
-    // ИСПРАВЛЕНО: Полный корректный адрес API Telegram с использованием косых черт и знака доллара
-    fetch(`https://telegram.org{BOT_TOKEN}/sendMessage`, {
+    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -40,16 +42,14 @@ if (form && statusText) {
       }),
     })
       .then((res: Response) => {
-        if (statusText && form) {
-          statusText.textContent = 'Xabar muvaffaqiyatli yuborildi!';
-          form.reset();
-        }
+        statusElement.textContent = 'Xabar muvaffaqiyatli yuborildi!';
+        formElement.reset();
       })
       .catch((err: Error) => {
-        if (statusText) {
-          statusText.textContent = 'Xatolik yuz berdi!';
-        }
+        statusElement.textContent = 'Xatolik yuz berdi!';
         console.error("Telegram error:", err);
       });
   });
 }
+
+export { };
