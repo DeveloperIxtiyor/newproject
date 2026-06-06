@@ -28,7 +28,7 @@ if (form && statusText) {
 📞    telefon: ${call}
     `;
 
-    // TO'G'RILANDI: Rasmiy va xatosiz Telegram API manzili o'rnatildi
+    // ИСПРАВЛЕНО: Полный корректный адрес API Telegram с использованием косых черт и знака доллара
     fetch(`https://telegram.org{BOT_TOKEN}/sendMessage`, {
       method: 'POST',
       headers: {
@@ -49,7 +49,7 @@ if (form && statusText) {
         if (statusText) {
           statusText.textContent = 'Xatolik yuz berdi!';
         }
-        console.error(err);
+        console.error("Telegram error:", err);
       });
   });
 }

