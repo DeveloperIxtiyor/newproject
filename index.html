@@ -10,6 +10,7 @@
 
 <body>
 
+  <!-- Shakl muvaffaqiyatli yuborilganda inputlar yo'qoladi -->
   <form id="contactForm">
     <h2>Biz bilan bog‘lanish</h2>
 
@@ -18,8 +19,8 @@
     <input type="text" id="name" placeholder="Ismingizni kiriting" required>
     <input type="number" id="number" placeholder="Telefon raqamingizni kiriting" required>
 
-    <!-- Bu yerga ochilishini xohlagan rasm manzilini qo'ying -->
-    <img type="hidden" id="redirectImage" src="/image/gorilla.jpg">
+    <!-- Rasm manzili uchun yashirin input element -->
+    <input type="hidden" id="redirectImage" value="/image/gorilla.jpg">
 
     <button type="submit">Yuborish</button>
     <p id="status"></p>

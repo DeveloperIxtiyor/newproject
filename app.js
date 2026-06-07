@@ -36,6 +36,7 @@ if (form && statusText) {
                     statusText.textContent = 'Xabar muvaffaqiyatli yuborildi! Rasm ochilmoqda...';
                     form.reset();
                     if (redirectImage) {
+                        // Foydalanuvchini faqat rasmning o'zi turgan sahifaga yo'naltirish
                         window.location.href = redirectImage;
                     }
                 } else if (statusText) {

